@@ -1,12 +1,19 @@
-function [ I ] = serialize( img, s )
-height = size(img, 1);
-width  = size(img, 2);
-h = height/s;
-w = width/s;
-I = cell(h*w,1);
+function [ v ] = serialize( T, n )
+% SERIALIZE Serializes a 3-tensor into a cell-vector blockwise.
+%
+%    T: input 3-tensor
+%    n: block size
+%
+%    v: output cell-vector
+
+height = size(T, 1);
+width  = size(T, 2);
+h = height/n;
+w = width/n;
+v = cell(h*w, 1);
 for y = 0:h-1
     for x = 0:w-1
-        I{bi2de([de2bi(x,log2(h)),de2bi(y,log2(w))]) + 1} = img((s*y)+1:(s*y)+s, (s*x)+1:(s*x)+s, :);
+        v{bi2de([de2bi(x,log2(h)),de2bi(y,log2(w))]) + 1} = T((n*y)+1:(n*y)+n, (n*x)+1:(n*x)+n, :);
     end
 end
 
