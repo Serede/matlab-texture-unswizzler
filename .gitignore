@@ -1,0 +1,4 @@
+totoro_unswizzled.bmp
+swizzled/*.bmp
+unswizzled/*.bmp
+*.zip
